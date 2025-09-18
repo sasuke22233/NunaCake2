@@ -1,5 +1,5 @@
 // API клиент для работы с NunaCake API
-const API_BASE_URL = 'http://185.184.122.156:3000/api';
+const API_BASE_URL = 'http://185.184.122.156:8081/api';
 
 class NunaCakeAPI {
     constructor() {
