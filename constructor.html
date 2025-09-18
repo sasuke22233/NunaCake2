@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конструктор тортов - NunaCake</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-birthday-cake"></i>
+                <span>NunaCake</span>
+            </a>
+            <div class="nav-menu">
+                <a href="constructor.html" class="nav-link active">Конструктор</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Конструктор тортов -->
+    <section class="cake-constructor">
+        <div class="container">
+            <h2 class="section-title">Конструктор тортов</h2>
+            
+            <!-- Настройки торта -->
+            <div class="cake-settings" id="cakeSettings">
+                <div class="setting-group">
+                    <label>Количество коржей:</label>
+                    <div class="number-input">
+                        <button class="number-btn" onclick="changeLayers(-1)">-</button>
+                        <span id="layerCount">3</span>
+                        <button class="number-btn" onclick="changeLayers(1)">+</button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <label>Диаметр торта (см):</label>
+                    <div class="diameter-input">
+                        <select id="diameterSelect">
+                            <option value="16">16 см</option>
+                            <option value="18" selected>18 см</option>
+                            <option value="20">20 см</option>
+                            <option value="22">22 см</option>
+                            <option value="24">24 см</option>
+                            <option value="26">26 см</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="startConstructor()">Начать создание</button>
+            </div>
+
+            <!-- Основной конструктор -->
+            <div class="constructor-main" id="constructorMain" style="display: none;">
+                <div class="constructor-layout">
+                    <!-- Центральная область с тортом -->
+                    <div class="cake-preview-area">
+                        <h3>Макет торта</h3>
+                        <div class="cake-sketch" id="cakeSketch">
+                            <!-- Реалистичный набросок торта -->
+                        </div>
+                    </div>
+
+                    <!-- Правая панель с составом торта -->
+                    <div class="cake-composition-panel">
+                        <h3>Состав торта</h3>
+                        <div class="composition-list" id="compositionList">
+                            <!-- Список коржей и кремов будет добавлен динамически -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Кнопка рецепта -->
+                <div class="recipe-button-container" id="recipeButtonContainer" style="display: none;">
+                    <button class="btn btn-primary recipe-btn" id="recipeBtn" onclick="showRecipe()">
+                        <i class="fas fa-book-open"></i>
+                        Показать рецепт
+                    </button>
+                </div>
+                
+                <!-- Нижняя секция с ингредиентами и рецептом -->
+                <div class="bottom-section" id="bottomSection" style="display: none;">
+                    <div class="bottom-layout">
+                        <!-- Левая панель с точными количествами ингредиентов -->
+                        <div class="ingredients-panel">
+                            <h3>Точные количества ингредиентов</h3>
+                            <div class="ingredients-list" id="ingredientsList">
+                                <!-- Список ингредиентов будет добавлен динамически -->
+                            </div>
+                        </div>
+
+                        <!-- Правая панель с рецептом -->
+                        <div class="recipe-panel">
+                            <h3>Рецепт приготовления</h3>
+                            <div class="recipe-content" id="recipeContent">
+                                <p>Нажмите кнопку "Показать рецепт" для получения подробных инструкций</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Модальное окно выбора ингредиентов -->
+            <div class="ingredient-modal" id="ingredientModal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeIngredientModal()">&times;</span>
+                    <h3 id="modalTitle">Выберите ингредиент</h3>
+                    <div class="ingredient-grid" id="ingredientGrid">
+                        <!-- Ингредиенты будут добавлены динамически -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Модальное окно с ингредиентами -->
+            <div class="ingredients-modal" id="ingredientsModal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeIngredientsModal()">&times;</span>
+                    <h3 id="ingredientsModalTitle">Ингредиенты</h3>
+                    <div class="ingredients-content">
+                        <ul id="ingredientsModalList">
+                            <!-- Список ингредиентов будет добавлен динамически -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Загружаем API клиент вместо data.js -->
+    <script src="api-client.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

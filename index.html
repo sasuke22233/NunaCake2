@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NunaCake - Конструктор тортиков</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-birthday-cake"></i>
+                <span>NunaCake</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#popular" class="nav-link active">Популярные торты</a>
+                <a href="constructor.html" class="nav-link">Конструктор тортов</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главный экран -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-line">Создай свой</span>
+                    <span class="title-line highlight">идеальный торт</span>
+                </h1>
+                <p class="hero-subtitle">От классических рецептов до уникальных комбинаций</p>
+                <div class="hero-buttons">
+                    <a href="#popular" class="btn btn-primary">Популярные рецепты</a>
+                    <a href="constructor.html" class="btn btn-secondary">Создать торт</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-cake">
+                    <div class="cake-flame"></div>
+                    <div class="cake-candle"></div>
+                    <div class="cake-layer">
+                        <div class="side-pattern"></div>
+                    </div>
+                    <div class="cake-layer">
+                        <div class="side-pattern"></div>
+                    </div>
+                    <div class="cake-layer">
+                        <div class="cream-pattern"></div>
+                        <div class="side-pattern"></div>
+                        <div class="cake-sprinkles">
+                            <div class="cake-sprinkle"></div>
+                            <div class="cake-sprinkle"></div>
+                            <div class="cake-sprinkle"></div>
+                            <div class="cake-sprinkle"></div>
+                            <div class="cake-sprinkle"></div>
+                            <div class="cake-sprinkle"></div>
+                            <div class="cake-sprinkle"></div>
+                            <div class="cake-sprinkle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Популярные торты -->
+    <section id="popular" class="popular-cakes">
+        <div class="container">
+            <h2 class="section-title">Популярные торты</h2>
+            <div class="cakes-grid" id="popularCakesGrid">
+                <!-- Карточки тортов будут загружены динамически из API -->
+            </div>
+            <div class="constructor-cta">
+                <h3>Хотите создать свой уникальный торт?</h3>
+                <p>Используйте наш конструктор для создания идеального торта по вашему вкусу</p>
+                <a href="constructor.html" class="btn btn-primary btn-large">
+                    <i class="fas fa-cake"></i>
+                    Открыть конструктор тортов
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно с рецептом -->
+    <div class="modal" id="recipeModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-body">
+                <h3 id="modalTitle">Описание торта</h3>
+                <div class="recipe-content">
+                    <div class="recipe-image">
+                        <img id="modalImage" src="" alt="" style="display: none; max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                    </div>
+                    <div class="cake-description">
+                        <p id="cakeDescription"></p>
+                    </div>
+                    <div class="cake-options">
+                        <div class="option-group">
+                            <label for="layerCountSelect">Количество коржей:</label>
+                            <select id="layerCountSelect">
+                                <option value="2">2 коржа</option>
+                                <option value="3" selected>3 коржа</option>
+                                <option value="4">4 коржа</option>
+                                <option value="5">5 коржей</option>
+                                <option value="6">6 коржей</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="diameterSelect">Диаметр торта:</label>
+                            <select id="diameterSelect">
+                                <option value="16">16 см</option>
+                                <option value="18" selected>18 см</option>
+                                <option value="20">20 см</option>
+                                <option value="22">22 см</option>
+                                <option value="24">24 см</option>
+                                <option value="26">26 см</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="recipe-actions">
+                        <button class="btn btn-primary" id="openConstructorBtn">
+                            <i class="fas fa-cake"></i>
+                            Открыть конструктор
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Загружаем API клиент вместо data.js -->
+    <script src="api-client.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
