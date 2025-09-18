@@ -1,5 +1,6 @@
-// API клиент для работы с NunaCake API
+// API клиент для работы с NunaCake API (с CORS proxy)
 const API_BASE_URL = 'http://185.184.122.156:8081/api';
+const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
 
 class NunaCakeAPI {
     constructor() {
@@ -9,7 +10,8 @@ class NunaCakeAPI {
     }
 
     async request(endpoint, options = {}) {
-        const url = `${this.baseURL}${endpoint}`;
+        const targetUrl = this.baseURL + endpoint;
+        const proxyUrl = CORS_PROXY + encodeURIComponent(targetUrl);
         const cacheKey = `${endpoint}_${JSON.stringify(options)}`;
         
         if (this.cache.has(cacheKey)) {
@@ -20,12 +22,13 @@ class NunaCakeAPI {
         }
 
         try {
-            const response = await fetch(url, {
+            const response = await fetch(proxyUrl, {
+                method: options.method || 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     ...options.headers
                 },
-                ...options
+                body: options.body ? JSON.stringify(options.body) : undefined
             });
 
             if (!response.ok) {
@@ -70,7 +73,7 @@ let popularCakes = [];
 
 async function loadDataFromAPI() {
     try {
-        console.log('🔄 Загрузка данных с API...');
+        console.log('🔄 Загрузка данных с API через CORS proxy...');
         
         const [cakesResponse, layersResponse, creamsResponse, fillingsResponse] = await Promise.all([
             apiClient.getCakes(),
@@ -134,7 +137,7 @@ async function loadDataFromAPI() {
             description: cakeData[id].description
         }));
 
-        console.log('✅ Данные загружены с API');
+        console.log('✅ Данные загружены с API через CORS proxy');
         console.log('📊 Загружено:', {
             cakes: cakesResponse.data.length,
             layers: layersResponse.data.length,
