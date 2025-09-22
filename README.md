@@ -7,9 +7,11 @@
 - База данных рецептов 
 - Адаптивный дизайн 
 - API для управления данными 
+- CORS proxy для работы с HTTPS 
  
 ## Технологии 
 - HTML5, CSS3, JavaScript 
 - Node.js API 
 - PostgreSQL база данных 
 - GitHub Pages хостинг 
+- CORS proxy для обхода ограничений 
